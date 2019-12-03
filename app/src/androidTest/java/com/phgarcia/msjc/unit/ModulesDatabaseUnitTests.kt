@@ -1,4 +1,4 @@
-package com.phgarcia.msjc
+package com.phgarcia.msjc.unit
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
@@ -9,7 +9,7 @@ import com.phgarcia.msjc.database.ModuleTableDAO
 import com.phgarcia.msjc.database.ModulesDatabase
 import com.phgarcia.msjc.models.Lesson
 import com.phgarcia.msjc.models.Module
-import kotlinx.coroutines.runBlocking
+import com.phgarcia.msjc.utils.getOrAwaitValue
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before

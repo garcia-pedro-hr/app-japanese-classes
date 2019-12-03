@@ -54,6 +54,9 @@ dependencies {
     def latest_material_version = '1.2.0-alpha02'
     implementation "com.google.android.material:material:$latest_material_version"
 
+    // Etc
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
     // Testing
     implementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation 'junit:junit:4.12'

@@ -1,4 +1,4 @@
-package com.phgarcia.msjc
+package com.phgarcia.msjc.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
