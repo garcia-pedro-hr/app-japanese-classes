@@ -115,7 +115,7 @@ class ModulesDatabaseUnitTests {
         val lesson3 = Lesson(3L, module.moduleNumber, "", "")
         lessonsTableDao.insertAll(listOf(lesson1, lesson2, lesson3))
 
-        val lessons: List<Lesson> = lessonsTableDao.getAllForModule(0L).getOrAwaitValue()
+        val lessons: List<Lesson> = lessonsTableDao.getAllForModule(0L)
         assertEquals(lesson1, lessons[0])
         assertEquals(lesson2, lessons[1])
         assertEquals(lesson3, lessons[2])
