@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.phgarcia.msjc.models.Lesson
 import com.phgarcia.msjc.models.Module
 
-@Database(entities = [Module::class, Lesson::class], version = 1, exportSchema = false)
+@Database(entities = [Module::class, Lesson::class], version = 1, exportSchema = true)
 abstract class ModulesDatabase : RoomDatabase() {
     abstract val lessonsTableDao: LessonTableDAO
     abstract val modulesTableDao: ModuleTableDAO
@@ -15,13 +15,13 @@ abstract class ModulesDatabase : RoomDatabase() {
 
 private lateinit var INSTANCE: ModulesDatabase
 
-fun getDatabase(context: Context): ModulesDatabase {
+fun getModulesDatabase(context: Context): ModulesDatabase {
     synchronized(ModulesDatabase::class.java) {
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(context.applicationContext,
                 ModulesDatabase::class.java,
                 "classes")
-                .fallbackToDestructiveMigration()
+                .createFromAsset("database/syllabus.db")
                 .build()
         }
     }

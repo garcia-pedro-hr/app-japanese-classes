@@ -1,0 +1,150 @@
+BEGIN TRANSACTION;
+
+PRAGMA foreign_keys = 0;
+
+CREATE TABLE IF NOT EXISTS room_master_table (
+    id INTEGER PRIMARY KEY,
+    identity_hash TEXT
+);
+
+INSERT OR REPLACE INTO room_master_table (id, identity_hash)
+VALUES (42, '7faf8d74e184950b7fbcf74818993bf0');
+
+CREATE TABLE IF NOT EXISTS module_table (
+    module_number INTEGER NOT NULL,
+    portuguese_title TEXT NOT NULL,
+    japanese_title TEXT NOT NULL,
+	finished INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY(module_number)
+);
+
+CREATE TABLE IF NOT EXISTS lesson_table (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    lesson_number INTEGER NOT NULL,
+    module_id INTEGER NOT NULL,
+    portuguese_title TEXT NOT NULL,
+    japanese_title TEXT NOT NULL,
+	finished INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY(module_id) REFERENCES module_table(module_number) ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS index_lesson_table_module_id ON lesson_table (module_id);
+
+INSERT INTO module_table (module_number, portuguese_title, japanese_title, finished) 
+VALUES (0, "Como fazer este curso e como estudar", "lorem ipsum"),
+	(1, "Introdução ao japonês", "lorem ipsum", 0),
+	(2, "Hiragana", "HIRAGANA", 0),
+	(3, "Katakana", "KATAKANA", 0),
+	(4, "Partículas", "lorem ipsum", 0),
+	(5, "Pronomes", "lorem ipsum", 0),
+	(6, "Frases básicas", "lorem ipsum", 0),
+	(7, "Adjetivos", "lorem ipsum", 0),
+	(8, "Verbos", "lorem ipsum", 0),
+	(9, "Várias ações", "lorem ipsum", 0),
+	(10, "Expressando desejos, proibições e obrigações", "lorem ipsum", 0),
+	(11, "Utilizando partículas e aspas", "lorem ipsum", 0),
+	(12, "Perguntando a opinião do outro", "lorem ipsum", 0),
+	(13, "Utilizando verbo + KOTO", "lorem ipsum", 0),
+	(14, "Falando sobre aspirações e planos", "lorem ipsum", 0);
+	
+INSERT INTO lesson_table(module_id, lesson_number, portuguese_title, japanese_title, finished)
+VALUES
+	-- Module 0
+	(0, 1, "Como fazer este curso", "lorem ipsum", 0),
+	(0, 2, "Dicionário online e aplicativos no celular", "lorem ipsum", 0),
+	(0, 3, "Cursos gratuitos na internet", "RIKAICHAN", 0),
+	-- TODO: Module 1 lessons are missing. Need to add when teacher defines them.
+	-- Module 2 
+	(2, 1, "Como estudar hiragana", "lorem ipsum", 0),
+	-- Module 3
+	(3, 1, "Introdução ao katakana e como estudar", "lorem ipsum", 0),
+	(3, 2, "HE, NO, FU, RE, NI, HA, RI, RU", "HE, NO, FU, RE, NI, HA, RI, RU", 0),
+	(3, 3, "N, SO, SHI, TSU, MI, RA, TE", "N, SO, SHI, TSU, MI, RA, TE", 0),
+	(3, 4, "I, TO, SU, HI, A, MA, KU, TA", "I, TO, SU, HI, A, MA, KU, TA", 0),
+	(3, 5, "WA, U, KO, YO, RO, YU, E, MU", "WA, U, KO, YO, RO, YU, E, MU", 0),
+	(3, 6, "KE, NE, NA, TI, ME, NU, KA", "KE, NE, NA, TI, ME, NU, KA", 0),
+	(3, 7, "KI, YA, SE, SA, MO, O, HO", "KI, YA, SE, SA, MO, O, HO", 0),
+	(3, 8, "Junção (YA, YU, YO), TSU pequeno e combinações", "lorem ipsum", 0),
+	-- Module 4 
+	(4, 1, "Partículas WA, GA, MO e diferenças entre elas", "lorem ipsum", 0),
+	(4, 2, "Partículas E e NI", "lorem ipsum", 0),
+	(4, 3, "Partícula NO", "lorem ipsum", 0),
+	(4, 4, "Partículas KARA e MADE", "lorem ipsum", 0),
+	(4, 5, "Partículas TO, YA, TOKA e KA", "lorem ipsum", 0),
+	(4, 6, "Partícula WO", "lorem ipsum", 0),
+	(4, 7, "Partícula DE", "lorem ipsum", 0),
+	(4, 8, "Partículas GORO e KURAI", "lorem ipsum", 0),
+	-- Module 5
+	(5, 1, "Pronomes pessoais", "lorem ipsum", 0),
+	(5, 2, "Pronomes demonstrativos: KORE, SORE, ARE, DORE/KONO, SONO, ANO, DONO", "lorem ipsum", 0),
+	(5, 3, "Pronomes demonstrativos: KOKO, SOKO, ASOKO, DOKO / KOTIRA, SOTIRA, ATIRA, DOTIRA", "lorem ipsum", 0),
+	(5, 4, "Pronomes demonstrativos: KONNA, SONNA, ANNA, DONNA", "lorem ipsum", 0),
+	(5, 5, "Pronomes interrogativos", "lorem ipsum", 0),
+	(5, 6, "Pronomes indefinidos", "lorem ipsum", 0),
+	-- Module 6
+	(6 ,1, "Finalizadores de frases: DES, TO OMOIMASU, DESHOU", "lorem ipsum", 0),
+	(6, 2, "Auto apresentação, apresentação de outras pessoas, nacionalidade e profissão", "lorem ipsum", 0),
+	(6, 3, "Perguntas sobre objetos", "lorem ipsum", 0),
+	(6, 4, "Expressões do cotidiano", "lorem ipsum", 0),
+	(6, 5, "Perguntas sobre localidades", "lorem ipsum", 0),
+	-- Module 7
+	(7, 1, "Adjetivos tipo I, conjugação e conexão", "lorem ipsum", 0),
+	(7, 2, "Adjetivos tipo NA, conjugação e conexão", "lorem ipsum", 0),
+	(7, 3, "Adjetivo + SOU", "lorem ipsum", 0),
+	(7, 4, "Adjetivos tipo I e NA + SA", "lorem ipsum", 0),
+	(7, 5, "Advérbios para adjetivos (intensidade)", "lorem ipsum", 0),
+	(7, 6, "Adjetivos SUKI e KIRAI", "lorem ipsum", 0),
+	(7, 7, "Transformando adjetivos em substantivos", "lorem ipsum", 0),
+	-- Module 8
+	(8, 1, "Grupos de verbos", "lorem ipsum", 0),
+	(8, 2, "Conjugação forma longa", "lorem ipsum", 0),
+	(8, 3, "Conjugação forma curta e forma TE", "lorem ipsum", 0),
+	(8, 4, "Gerúndio", "lorem ipsum", 0),
+	(8, 5, "Forma potencial, MIERU, KIKOERU", "lorem ipsum", 0),
+	(8, 6, "Verbos NI AGUEMASU, NI MORAIMASU", "lorem ipsum", 0),
+	(8, 7, "Forma condicional", "lorem ipsum", 0),
+	(8, 8, "Advérbios para verbos", "lorem ipsum", 0),
+	(8, 9, "Forma MASHOU", "lorem ipsum", 0),
+	(8, 10, "Verbo NARIMASU", "lorem ipsum", 0),
+	(8, 11, "JIDOUSHI e TADOUSHI", "lorem ipsum", 0),
+	(8, 12, "Verbos ARIMASU e IMASU", "lorem ipsum", 0),
+	-- Module 9
+	(9, 1, "Sequências de ações (MAZU e SOREKARA, TE KARA, MAE NI)", "lorem ipsum", 0),
+	(9, 2, "Verbo TE e TARI TARI", "lorem ipsum", 0),
+	(9, 3, "Verbo ou adjetivo TA + RA (Se, quando, depois)", "lorem ipsum", 0),
+	(9, 4, "TOKI", "TOKI", 0),
+	(9, 5, "Uso do NAGARA", "lorem ipsum", 0),
+	(9, 6, "Verbo + TO", "lorem ipsum", 0),
+	(9, 7, "Forma informal SHI", "lorem ipsum", 0),
+	-- Module 10
+	(10, 1, "Forma TAI", "lorem ipsum", 0),
+	(10, 2, "HOSHII", "lorem ipsum", 0),
+	(10, 3, "Expressar proibição", "lorem ipsum", 0),
+	(10, 4, "Expressando obrigação", "lorem ipsum", 0),
+	(10, 5, "Como falar para o que vamos ou voltamos de algo", "lorem ipsum", 0),
+	(10, 6, "Uso do DAKE e SHIKA", "lorem ipsum", 0),
+	-- Module 11
+	(11, 1, "Partículas de citação", "lorem ipsum", 0),
+	(11, 2, "Como perguntar como fala algo em algum idioma", "lorem ipsum", 0),
+	(11, 3, "Uso do TO IIMASU", "lorem ipsum", 0),
+	-- Module 12
+	(12, 1, "Perguntando a opinião do outro e como solicitar uma escolha do ouvinte de algo de um grupo", "lorem ipsum", 0),
+	(12, 2, "Forma MASENKA e MASHOU", "lorem ipsum", 0),
+	(12, 3, "Perguntando sobre a escolha entre dois itens com DOTIRA e uso do YORI e NOMOUGA (comparação)", "lorem ipsum", 0),
+	(12, 4, "Pronome interrogativo + verbo TA + RA II DESUKA", "lorem ipsum", 0),
+	-- Module 13
+	(13, 1, "KOTO GA DEKIMASU", "lorem ipsum", 0),
+	(13, 2, "KOTO GA ARIMASU", "lorem ipsum", 0),
+	(13, 3, "KOTO GA NARIMASU", "lorem ipsum", 0),
+	(13, 4, "KOTO GA SHIMASU", "lorem ipsum", 0),
+	-- Module 14
+	(14, 1, "Uso do TSUMORI", "lorem ipsum", 0),
+	(14, 2, "Uso do YOTEI", "lorem ipsum", 0),
+	(14, 3, "Uso do verbo (OU) TO OMOTTEIMASU", "lorem ipsum", 0),
+	(14, 4, "Uso do verbo TE + ARIMASU e do verbo TE + OKIMASU", "lorem ipsum", 0);
+
+PRAGMA foreign_keys = 1;
+PRAGMA foreign_key_check;
+PRAGMA integrity_check;
+
+COMMIT;

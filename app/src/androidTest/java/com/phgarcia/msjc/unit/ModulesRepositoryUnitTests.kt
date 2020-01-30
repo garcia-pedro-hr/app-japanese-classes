@@ -5,6 +5,8 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.phgarcia.msjc.database.ModulesDatabase
+import com.phgarcia.msjc.models.Lesson
+import com.phgarcia.msjc.models.Module
 import com.phgarcia.msjc.repository.ModulesRepository
 import com.phgarcia.msjc.utils.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
@@ -36,28 +38,25 @@ class ModulesRepositoryUnitTests {
     fun closeDatabase() = modulesDatabase.close()
 
     @Test
-    @Throws(Exception::class)
-    fun modulesRepository_refreshModules_completed() {
-        runBlocking { modulesRepository.refreshModules() }
-        Assert.assertFalse(modulesRepository.modules.getOrAwaitValue().isEmpty())
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun modulesRepository_refreshLessons_completed() {
+    @Throws
+    fun modulesRepository_getModules_notEmpty() {
         runBlocking {
-            modulesRepository.refreshModules()
-            modulesRepository.refreshLessons()
+            val module = Module(0L, "", "")
+            modulesDatabase.modulesTableDao.insert(module)
         }
-        Assert.assertFalse(modulesDatabase.lessonsTableDao.getAll().isEmpty())
+        Assert.assertFalse(modulesRepository.modules.getOrAwaitValue().isEmpty())
     }
 
     @Test
     @Throws
     fun modulesRepository_updateLessonsForModule_completed() {
         runBlocking {
-            modulesRepository.refreshModules()
-            modulesRepository.refreshLessons()
+            val module = Module(0L, "", "")
+            modulesDatabase.modulesTableDao.insert(module)
+            val lesson1 = Lesson(1L, module.moduleNumber, "", "")
+            val lesson2 = Lesson(2L, module.moduleNumber, "", "")
+            val lesson3 = Lesson(3L, module.moduleNumber, "", "")
+            modulesDatabase.lessonsTableDao.insertAll(listOf(lesson1, lesson2, lesson3))
             modulesRepository.updateLessonsForModule(0)
         }
         // Be aware that the solution's number os lessons may be different,

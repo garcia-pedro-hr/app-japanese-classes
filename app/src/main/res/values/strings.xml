@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Mariana Sensei Japanese Classes</string>
+    <string name="app_name">Japonês Descomplicado</string>
+
+    <string name="numbered_module">Módulo %1$d</string>
 </resources>
