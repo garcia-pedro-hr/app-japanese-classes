@@ -1,17 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/primary_light_orange</color>
-    <color name="colorAccent">@color/primary_light_orange</color>
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorAccent">@color/primary_orange_light</color>
+
+    <color name="status_bar_color">@color/primary_orange</color>
+    <color name="backdrop_background_color">@color/colorAccent</color>
+    <color name="backdrop_foreground_color">@color/colorPrimary</color>
+
+    <color name="title_black">#DE000000</color>
+    <color name="subtitle_gray">#99000000</color>
+
+    <!-- Primary orange hues -->
+    <color name="primary_orange_50">#FFF3E0</color>
+    <color name="primary_orange_100">#FFE0B2</color>
+    <color name="primary_orange_200">#FFCD80</color>
+    <color name="primary_orange_300">#FFB84D</color>
+    <color name="primary_orange_400">#FFA826</color>
+    <color name="primary_orange_500">#FF9901</color>
+    <color name="primary_orange_700">#F97C01</color>
+    <color name="primary_orange_800">#F36C02</color>
+    <color name="primary_orange_900">#EA5102</color>
+    <color name="primary_orange_1000">#C55D00</color>
+
+    <color name="primary_orange_light">@color/primary_orange_300</color>
+    <color name="primary_orange">#FF8C01</color>
+    <color name="primary_orange_dark">@color/primary_orange_1000</color>
+
+    <!-- Primary blue hues -->
+    <color name="primary_blue_50">#DFF7FD</color>
+    <color name="primary_blue_100">#AFEAF8</color>
+    <color name="primary_blue_200">#78DCF3</color>
+    <color name="primary_blue_400">#00C4E7</color>
+    <color name="primary_blue_500">#00BAE1</color>
+    <color name="primary_blue_600">#00AACD</color>
+    <color name="primary_blue_700">#0095B2</color>
+    <color name="primary_blue_800">#008199</color>
+    <color name="primary_blue_900">#005F6C</color>
+
+    <color name="primary_blue_light">@color/primary_blue_200</color>
+    <color name="primary_blue">#34CFED</color>
+    <color name="primary_blue_dark">@color/primary_blue_700</color>
 
     <!-- Main colors -->
-    <color name="primary_blue">#34CFED</color>
     <color name="primary_teal">#00739B</color>
     <color name="primary_navy">#005874</color>
-    <color name="primary_dark_orange">#FF1C00</color>
-    <color name="primary_light_orange">#FF8C01</color>
+    <color name="primary_reddish_orange">#FF1C00</color>
 
     <!-- Secondary colors -->
     <color name="secondary_beige">#F8EDD5</color>
     <color name="secondary_maroon">#BF0811</color>
     <color name="secondary_brown">#801815</color>
+
+    <color name="white">#FFFBFA</color>
 </resources>

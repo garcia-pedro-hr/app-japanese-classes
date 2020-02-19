@@ -7,8 +7,9 @@
 
     <fragment
         android:id="@+id/modulesFragment"
-        android:name="com.phgarcia.msjc.ui.modules.ModulesFragment"
-        android:label="modules_fragment"
-        tools:layout="@layout/modules_fragment" />
+        android:name="com.phgarcia.msjc.ui.main.MainFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/main_fragment" >
+    </fragment>
 
 </navigation>

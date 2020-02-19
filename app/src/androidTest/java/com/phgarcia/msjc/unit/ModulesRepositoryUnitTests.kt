@@ -57,7 +57,7 @@ class ModulesRepositoryUnitTests {
             val lesson2 = Lesson(2L, module.moduleNumber, "", "")
             val lesson3 = Lesson(3L, module.moduleNumber, "", "")
             modulesDatabase.lessonsTableDao.insertAll(listOf(lesson1, lesson2, lesson3))
-            modulesRepository.updateLessonsForModule(0)
+            modulesRepository.refreshLessons(0)
         }
         // Be aware that the solution's number os lessons may be different,
         // thus this test may fail even though the code is working alright
